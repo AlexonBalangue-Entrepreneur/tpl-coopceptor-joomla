@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.6" type="template" client="site" method="upgrade">
+<extension version="3.9" type="template" client="site" method="upgrade">
 	<name>coopcetor</name>
-	<version>1.1</version>
-	<creationDate>September, 15th 2016</creationDate>
+	<version>1.2</version>
+	<creationDate>September, 7th 2017</creationDate>
 	<author>Alexon Balangue</author>
 	<authorUrl>www.alexonbalangue.me</authorUrl>
 	<authorEmail>moi.sites@alexonbalangue.me</authorEmail>
-	<copyright>Copyright (C) 2016 Alexon Balangue. All rights reserved.</copyright>
+	<copyright>Copyright (C) 2016-2018 Alexon Balangue. All rights reserved.</copyright>
 	<description>TPL_COOPCEPTOR_XML_DESCRIPTION</description>
 	<files>
 		<filename>component.php</filename>
@@ -20,7 +20,6 @@
 		<filename>template_thumbnail.png</filename>
 		<folder>assets</folder>
 		<folder>html</folder>
-		<folder>language</folder>
 	</files>
 	<positions>
 		<position>banner-header</position>
@@ -58,44 +57,16 @@
 					default="boostrap2"
 					label="TPL_COOPCEPTOR_METHODHTML_LABEL"
 					description="TPL_COOPCEPTOR_METHODHTML_DESC">
-						<option value="boostrap2">Boostrap V2.3.2</option>
-						<option value="boostrap3">Boostrap V3.3.6</option>
-						<option value="amp">AMP</option>
-						<option value="foundation">Foundation</option>
-						<option value="metroui">MetroUI</option>
+						<option value="boostrap3">Boostrap V3.x</option>
+						<option value="boostrap4">Boostrap V4.x</option>
 				</field>
 				<field name="groups-method"
 					type="list"
 					default="base"
 					label="TPL_COOPCEPTOR_METHODDESIGNER_LABEL"
 					description="TPL_COOPCEPTOR_METHODDESIGNER_DESC">
-						<option value="base">TPL_COOPCEPTOR_METHODDESIGNER_OPTION_BASE</option>
-						<option value="default">TPL_COOPCEPTOR_METHODDESIGNER_OPTION_DEFAULT</option>
 						<option value="developpment">TPL_COOPCEPTOR_METHODDESIGNER_OPTION_DEV</option>
-						<option value="custom">TPL_COOPCEPTOR_METHODDESIGNER_OPTION_CUSTOM</option>
 						<option value="production">TPL_COOPCEPTOR_METHODDESIGNER_OPTION_PROD</option>
-				</field>
-			</fieldset>
-			<fieldset name="AMP-HTMLviews" label="AMP-HTML views">
-				<field name="ampHTML"
-					type="radio"
-					class="btn-group btn-group-yesno"
-					default=""
-					label="AMP-HTML"
-					description="TPL_COOPCEPTOR_AMPHTML_DESC">
-						<option value="amp">JYes</option>
-						<option value="">JNo</option>
-				</field>
-			</fieldset>
-			<fieldset name="Hidding" label="Hidding support">
-				<field name="ampHTMLbeta"
-					type="radio"
-					class="btn-group btn-group-yesno"
-					default="0"
-					label="not yet"
-					description="TPL_COOPCEPTOR_XXXX_DESC">
-						<option value="1">JYes</option>
-						<option value="0">JNo</option>
 				</field>
 			</fieldset>
 		</fields>

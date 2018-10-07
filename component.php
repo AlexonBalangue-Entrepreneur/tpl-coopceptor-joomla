@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  Templates.coopceptor
  *
- * @copyright   Copyright (C) 2016 AlexonBalangue.me. All rights reserved.
+ * @copyright   Copyright (C) 2016-2018 AlexonBalangue.me. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
