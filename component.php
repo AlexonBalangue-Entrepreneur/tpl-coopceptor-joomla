@@ -8,16 +8,21 @@
  */
 
 defined('_JEXEC') or die;
-/*
+
+
 $apps             = JFactory::getApplication();
 $docs             = JFactory::getDocument();
+$users            = JFactory::getUser();
+$browser = JBrowser::getInstance();
 $this->language  = $docs->language;
 $this->direction = $docs->direction;
-*/
+
+$this->setHtml5(true);
+
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 <head>
 <jdoc:include type="head" />
 </head>

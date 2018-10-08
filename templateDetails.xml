@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.9" type="template" client="site" method="upgrade">
 	<name>coopcetor</name>
-	<version>1.2</version>
-	<creationDate>September, 7th 2017</creationDate>
+	<version>1.2 beta</version>
+	<creationDate>September, 8th 2018</creationDate>
 	<author>Alexon Balangue</author>
 	<authorUrl>www.alexonbalangue.me</authorUrl>
 	<authorEmail>moi.sites@alexonbalangue.me</authorEmail>
@@ -26,7 +26,10 @@
 		<position>banner-mheader</position>
 		<position>banner-footer</position>
 		<position>banner-mfooter</position>
-		<position>footer</position>
+		<position>menu</position>
+		<position>footer1</position>
+		<position>footer2</position>
+		<position>footer3</position>
 		<position>referencer</position>
 		<position>debug</position>
 	</positions>
@@ -52,14 +55,6 @@
 				<field name="logoFile" class="" type="media" default=""
 					label="TPL_COOPCEPTOR_LOGO_LABEL"
 					description="TPL_COOPCEPTOR_LOGO_LABEL" />
-				<field name="groups-html"
-					type="list"
-					default="boostrap2"
-					label="TPL_COOPCEPTOR_METHODHTML_LABEL"
-					description="TPL_COOPCEPTOR_METHODHTML_DESC">
-						<option value="boostrap3">Boostrap V3.x</option>
-						<option value="boostrap4">Boostrap V4.x</option>
-				</field>
 				<field name="groups-method"
 					type="list"
 					default="base"
