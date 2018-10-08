@@ -9,37 +9,52 @@
 
 defined('_JEXEC') or die;
 
-$twofactormethods = JAuthenticationHelper::getTwoFactorMethods();
-$apps             = JFactory::getApplication();
-$docs             = JFactory::getDocument();
-$users            = JFactory::getUser();
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Application;
+#use Joomla\CMS\Document;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Helper\AuthenticationHelper;
+
+
+$apps = Factory::getApplication();
+$docs = Factory::getDocument();
+$users = Factory::getUser();
+$twofactormethods = AuthenticationHelper::getTwoFactorMethods();
+
 
 $this->language  = $docs->language;
 $this->direction = $docs->direction;
 $this->setHtml5(true);
 
+$params = $apps->getTemplate(true)->params;
 $this->_script = $this->_scripts = array();	
-$fullWidth = 1;
+
 
 $sitename = htmlspecialchars($apps->get('sitename'), ENT_QUOTES, 'UTF-8');
 
-if ($params->get('logoFile')){
-	$logo = '<img src="' . JUri::root() . $params->get('logoFile') . '" alt="' . $sitename . '" />';
+if ($this->params->get('logoFile')){
+	$logo = '<img src="' . Uri::root() . $this->params->get('logoFile') . '" alt="' . $sitename . '" />';
 } else {
 	$logo = $sitename;
 }
-/*
-unset($docs->_scripts[JURI::root(true) . '/media/system/js/mootools-more.js']);
-unset($docs->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']);
-unset($docs->_scripts[JURI::root(true) . '/media/system/js/core.js']);
-unset($docs->_scripts[JURI::root(true) . '/media/system/js/modal.js']);
-unset($docs->_scripts[JURI::root(true) . '/media/system/js/caption.js']);
-unset($docs->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
-unset($docs->_scripts[JURI::root(true) . '/media/jui/js/jquery-migrate.min.js']);
-unset($docs->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
-unset($docs->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
-*/
+$Params_grpsCSS = $this->params->get('groups-method');
 
+switch($Params_grpsCSS):
+	case 'developpment': 
+		HTMLHelper::_('stylesheet', 'templates/'.$this->template.'/assets/coopceptor.css', ['version' => 'auto', 'relative' => true]);
+		HTMLHelper::_('script', 'templates/'.$this->template.'/assets/coopceptor.js', ['version' => 'auto', 'relative' => true]);
+	break;
+	case 'production': 
+		HTMLHelper::_('stylesheet', 'templates/'.$this->template.'/assets/coopceptor.min.css', ['version' => 'auto', 'relative' => true]);
+		HTMLHelper::_('script', 'templates/'.$this->template.'/assets/coopceptor.min.js', ['version' => 'auto', 'relative' => true]);
+	break;
+endswitch;
+
+
+//HTMLHelper::_('webcomponent', 'vendor/joomla-custom-elements/joomla-alert.min.js', ['relative' => true, 'version' => 'auto', 'detectBrowser' => false, 'detectDebug' => false]);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
@@ -47,12 +62,9 @@ unset($docs->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
 	<jdoc:include type="head" />
 	<link href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/coopceptor.min.css" rel="stylesheet" />
 	<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
 [/head]
 [begins tags="body" mdatatype="http://schema.org/WebPage" /]
-
-
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-normal"><?php echo $sitename; ?></h5>
 
@@ -66,32 +78,32 @@ unset($docs->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
 				<?php if ($apps->get('display_offline_message', 1) == 1 && str_replace(' ', '', $apps->get('offline_message')) !== '') : ?>
 					<p><?php echo $apps->get('offline_message'); ?></p>
 				<?php elseif ($apps->get('display_offline_message', 1) == 2) : ?>
-					<p><?php echo JText::_('JOFFLINE_MESSAGE'); ?></p>
+					<p><?php echo Text::_('JOFFLINE_MESSAGE'); ?></p>
 				<?php endif; ?>		  
           </div>
         </div>
 		
         <div class="card mb-6 shadow-sm">
 
-				<form action="<?php echo JRoute::_('index.php', true); ?>" method="post" id="form-login">
+				<form action="<?php echo Route::_('index.php', true); ?>" method="post" id="form-login">
 					<fieldset>
-						<label for="username"><?php echo JText::_('JGLOBAL_USERNAME'); ?></label>
-						<input name="username" id="username" type="text" title="<?php echo JText::_('JGLOBAL_USERNAME'); ?>" />
+						<label for="username"><?php echo Text::_('JGLOBAL_USERNAME'); ?></label>
+						<input name="username" id="username" type="text" title="<?php echo Text::_('JGLOBAL_USERNAME'); ?>" />
 
-						<label for="password"><?php echo JText::_('JGLOBAL_PASSWORD'); ?></label>
-						<input type="password" name="password" id="password" title="<?php echo JText::_('JGLOBAL_PASSWORD'); ?>" />
+						<label for="password"><?php echo Text::_('JGLOBAL_PASSWORD'); ?></label>
+						<input type="password" name="password" id="password" title="<?php echo Text::_('JGLOBAL_PASSWORD'); ?>" />
 
 						<?php if (count($twofactormethods) > 1) : ?>
-						<label for="secretkey"><?php echo JText::_('JGLOBAL_SECRETKEY'); ?></label>
-						<input type="text" name="secretkey" id="secretkey" title="<?php echo JText::_('JGLOBAL_SECRETKEY'); ?>" />
+						<label for="secretkey"><?php echo Text::_('JGLOBAL_SECRETKEY'); ?></label>
+						<input type="text" name="secretkey" id="secretkey" title="<?php echo Text::_('JGLOBAL_SECRETKEY'); ?>" />
 						<?php endif; ?>
 
-						<input type="submit" name="Submit" class="btn btn-primary" value="<?php echo JText::_('JLOGIN'); ?>" />
+						<input type="submit" name="Submit" class="btn btn-primary" value="<?php echo Text::_('JLOGIN'); ?>" />
 
 						<input type="hidden" name="option" value="com_users" />
 						<input type="hidden" name="task" value="user.login" />
-						<input type="hidden" name="return" value="<?php echo base64_encode(JUri::base()); ?>" />
-						<?php echo JHtml::_('form.token'); ?>
+						<input type="hidden" name="return" value="<?php echo base64_encode(Uri::base()); ?>" />
+						<?php echo HTMLHelper::_('form.token'); ?>
 					</fieldset>
 				</form>
         </div>

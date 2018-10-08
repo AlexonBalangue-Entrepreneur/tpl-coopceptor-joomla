@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.9" type="template" client="site" method="upgrade">
 	<name>coopcetor</name>
-	<version>1.2 beta</version>
+	<version>1.2 beta 4</version>
 	<creationDate>September, 8th 2018</creationDate>
 	<author>Alexon Balangue</author>
 	<authorUrl>www.alexonbalangue.me</authorUrl>
@@ -42,7 +42,7 @@
 	<config>
 		<fields name="params">
 			<fieldset name="advanced">
-				<field name="Pages-js-default"
+				<field name="page-dev"
 					type="radio"
 					class="btn-group btn-group-yesno"
 					default=""

@@ -9,11 +9,12 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+#use Joomla\CMS\Document;
 
-$apps             = JFactory::getApplication();
-$docs             = JFactory::getDocument();
-$users            = JFactory::getUser();
-$browser = JBrowser::getInstance();
+
+$docs = Factory::getDocument();
+
 $this->language  = $docs->language;
 $this->direction = $docs->direction;
 
